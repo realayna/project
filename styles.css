@@ -1,0 +1,58 @@
+body {
+    font-family: Courier New, monospace;
+    font-size: 20px;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    text-align: center;
+    padding: 20px;
+    color: #ffffff;
+  }
+  
+  #calculator {
+    margin: 20px;
+  }
+  
+  #calculator > div {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: inline-block;
+    width: 100px;
+  }
+  
+  input[type="text"],
+  select {
+    font-family: Courier New, monospace;
+    font-size: 20px;
+  }
+  
+  #result {
+    font-style: italic;
+  }
+  
+  hr {
+    margin: 20px;
+    border: none;
+    border-top: 1px solid #ccc;
+  }
+  
+  #color-selection {
+    margin: 20px;
+  }
+  
+  #color-selection div {
+    margin-bottom: 10px;
+  }
+  
+  #picture {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transform: rotate(180deg);
+  }
+  

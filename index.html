@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unusual Calculator</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    .gradient {
+      background: linear-gradient(to right, #ff9966, #ff5e62);
+    }
+  </style>
+</head>
+<body>
+  <header class="gradient">
+    <h1>Unusual Calculator</h1>
+  </header>
+  <img src="calc.png" alt="Calculator Picture" id="picture">
+  <div id="calculator">
+    <div>
+      <label for="arguments">Arguments:</label>
+      <input type="text" id="arguments" placeholder="Enter space-separated integers" />
+    </div>
+    <div>
+      <label for="operation">Operation:</label>
+      <select id="operation">
+        <option value="sum">∑ - Sum</option>
+        <option value="product">∏ - Product</option>
+        <option value="maximum">&gt; - Maximum</option>
+        <option value="minimum">&lt; - Minimum</option>
+      </select>
+    </div>
+    <div>
+      <button id="calculate">Launch</button>
+    </div>
+    <div>
+      <label for="result">Result:</label>
+      <input type="text" id="result" readonly />
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div id="color-selection">
+    <div>
+      <label for="foreground-color">Foreground Color:</label>
+      <input type="color" id="foreground-color" />
+    </div>
+    <div>
+      <label for="background-color">Background Color:</label>
+      <input type="color" id="background-color" />
+    </div>
+  </div>
+  
+  <script>
+    document.getElementById('calculate').addEventListener('click', function() {
+      var args = document.getElementById('arguments').value;
+      var operation = document.getElementById('operation').value;
+      var result = document.getElementById('result');
+      
+      args = args.split(' ').map(function(arg) {
+        return parseInt(arg);
+      });
+      
+      var calculatedResult;
+      
+      switch (operation) {
+        case 'sum':
+          calculatedResult = args.reduce(function(a, b) {
+            return a + b;
+          }, 0);
+          break;
+        case 'product':
+          calculatedResult = args.reduce(function(a, b) {
+            return a * b;
+          }, 1);
+          break;
+        case 'maximum':
+          calculatedResult = Math.max(...args);
+          break;
+        case 'minimum':
+          calculatedResult = Math.min(...args);
+          break;
+      }
+      
+      result.value = calculatedResult;
+    });
+    
+    document.getElementById('arguments').addEventListener('input', function() {
+      // Remove excessive spaces
+      this.value = this.value.replace(/\s{2,}/g, ' ');
+    });
+    
+    document.getElementById('arguments').addEventListener('focus', function() {
+      // Clear result when arguments field is focused
+      document.getElementById('result').value = '';
+    });
+    
+    document.getElementById('foreground-color').addEventListener('input', function() {
+      document.getElementById('result').style.color = this.value;
+    });
+    
+    document.getElementById('background-color').addEventListener('input', function() {
+      document.getElementById('result').style.backgroundColor = this.value;
+    });
+  </script>
+</body>
+</html>
